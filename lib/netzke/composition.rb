@@ -45,10 +45,10 @@ module Netzke
             :eval_js => component.js_missing_code(cache),
             :eval_css => component.css_missing_code(cache)
           }, {
-            :component_delivered => component.js_config
+            :component_delivered => component.js_config.merge(:request_uuid => params[:request_uuid])
           }]
         else
-          {:component_delivery_failed => {:component_name => component_name, :msg => "Couldn't load component '#{component_name}'"}}
+          {:component_delivery_failed => {:component_name => component_name, :msg => "Couldn't load component '#{component_name}'", :request_uuid => params[:request_uuid]}}
         end
       end
 
