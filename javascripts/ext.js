@@ -320,8 +320,8 @@ Ext.apply(Netzke.classes.Core.Mixin, {
   */
   componentDelivered: function(config){
     // retrieve the loading config for this component
-    var storedConfig = this.componentsBeingLoaded[config.name] || {};
-    delete this.componentsBeingLoaded[config.name];
+    var storedConfig = this.componentsBeingLoaded[config.requestUuid] || {};
+    delete this.componentsBeingLoaded[config.requestUuid];
 
     if (storedConfig.loadMaskCmp) {
       storedConfig.loadMaskCmp.hide();
@@ -351,8 +351,8 @@ Ext.apply(Netzke.classes.Core.Mixin, {
   },
 
   componentDeliveryFailed: function(params) {
-    var storedConfig = this.componentsBeingLoaded[params.componentName] || {};
-    delete this.componentsBeingLoaded[params.componentName];
+    var storedConfig = this.componentsBeingLoaded[config.requestUuid] || {};
+    delete this.componentsBeingLoaded[config.requestUuid];
 
     if (storedConfig.loadMaskCmp) {
       storedConfig.loadMaskCmp.hide();
