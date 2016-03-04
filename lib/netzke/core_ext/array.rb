@@ -10,9 +10,9 @@ class Array
 
   # Applies deep_convert_keys to each element which responds to deep_convert_keys
   def deep_convert_keys(&block)
-    block_given? ? self.map do |i|
+    block_given? ? (self.map do |i|
       i.respond_to?('deep_convert_keys') ? i.deep_convert_keys(&block) : i
-    end : self
+    end) : self
   end
 
   def deep_each_pair(&block)

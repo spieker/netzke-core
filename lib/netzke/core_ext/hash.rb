@@ -9,10 +9,10 @@ class Hash
   # {:bla_bla => 1, "wow_now" => {:look_ma => true}}.deep_convert_keys{|k| k.to_s.camelize.to_sym}
   #   => {:BlaBla => 1, "WowNow" => {:LookMa => true}}
   def deep_convert_keys(&block)
-    block_given? ? self.inject({}) do |h,(k,v)|
+    block_given? ? (self.inject({}) do |h,(k,v)|
       h[yield(k)] = v.respond_to?('deep_convert_keys') ? v.deep_convert_keys(&block) : v
       h
-    end : self
+    end) : self
   end
 
   def jsonify
